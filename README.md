@@ -4,8 +4,6 @@
 Essa é uma sequência de plugins e mappings que eu mesmo estou criando pro meu Nvim
 
 
-
-
 ## Instalação
 
 Instale o [packer.nvim](https://github.com/wbthomason/packer.nvim)
