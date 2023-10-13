@@ -1,6 +1,5 @@
 require "init"
-
-
+ 
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 vim.o.smartcase = true
@@ -15,5 +14,9 @@ vim.o.shiftwidth = 2
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+-- Color Scheme Settings
+vim.cmd.colorscheme("catppuccin")
+vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
 
 

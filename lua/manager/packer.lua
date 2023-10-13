@@ -45,4 +45,11 @@ use {
     end
   }
 
+use { "catppuccin/nvim", as = "catppuccin" }
+
+use 'mbbill/undotree'
+use 'tpope/vim-fugitive'
+use 'nvim-lua/plenary.nvim'
+use 'ThePrimeagen/harpoon'
+
 end)
