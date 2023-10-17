@@ -1,0 +1,163 @@
+[1mdiff --git a/after/plugin/treesitter.lua b/after/plugin/treesitter.lua[m
+[1mindex e320169..5eb22c6 100644[m
+[1m--- a/after/plugin/treesitter.lua[m
+[1m+++ b/after/plugin/treesitter.lua[m
+[36m@@ -1,3 +1,4 @@[m
+[32m+[m
+ require'nvim-treesitter.configs'.setup {[m
+   -- A list of parser names, or "all" (the five listed parsers should always be installed)[m
+   ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "go", "dart", "java" },[m
+[36m@@ -25,3 +26,5 @@[m [mrequire'nvim-treesitter.configs'.setup {[m
+     disable = { },[m
+   },[m
+ }[m
+[32m+[m
+[32m+[m[32mrequire 'nvim-treesitter.install'.compilers = { "clang" }[m
+[1mdiff --git a/main.c b/main.c[m
+[1mindex 78f9297..e3fcba4 100644[m
+[1m--- a/main.c[m
+[1m+++ b/main.c[m
+[36m@@ -6,3 +6,4 @@[m
+ [m
+ [m
+ [m
+[41m+[m
+[1mdiff --git a/plugin/packer_compiled.lua b/plugin/packer_compiled.lua[m
+[1mindex d7ae3e0..2fd436a 100644[m
+[1m--- a/plugin/packer_compiled.lua[m
+[1m+++ b/plugin/packer_compiled.lua[m
+[36m@@ -49,8 +49,8 @@[m [mlocal function save_profiles(threshold)[m
+ end[m
+ [m
+ time([[Luarocks path setup]], true)[m
+[31m-local package_path_str = "/home/devcael/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/devcael/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/devcael/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/devcael/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"[m
+[31m-local install_cpath_pattern = "/home/devcael/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"[m
+[32m+[m[32mlocal package_path_str = "C:\\Users\\Micae\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\share\\lua\\5.1\\?.lua;C:\\Users\\Micae\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\share\\lua\\5.1\\?\\init.lua;C:\\Users\\Micae\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\lib\\luarocks\\rocks-5.1\\?.lua;C:\\Users\\Micae\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\lib\\luarocks\\rocks-5.1\\?\\init.lua"[m
+[32m+[m[32mlocal install_cpath_pattern = "C:\\Users\\Micae\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\lib\\lua\\5.1\\?.so"[m
+ if not string.find(package.path, package_path_str, 1, true) then[m
+   package.path = package.path .. ';' .. package_path_str[m
+ end[m
+[36m@@ -76,103 +76,103 @@[m [mtime([[Defining packer_plugins]], true)[m
+ _G.packer_plugins = {[m
+   LuaSnip = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/LuaSnip",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\LuaSnip",[m
+     url = "https://github.com/L3MON4D3/LuaSnip"[m
+   },[m
+   catppuccin = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/catppuccin",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\catppuccin",[m
+     url = "https://github.com/catppuccin/nvim"[m
+   },[m
+   ["cmp-nvim-lsp"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-nvim-lsp",[m
+     url = "https://github.com/hrsh7th/cmp-nvim-lsp"[m
+   },[m
+   harpoon = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/harpoon",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\harpoon",[m
+     url = "https://github.com/ThePrimeagen/harpoon"[m
+   },[m
+   ["lsp-zero.nvim"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lsp-zero.nvim",[m
+     url = "https://github.com/VonHeikemen/lsp-zero.nvim"[m
+   },[m
+   ["mason-lspconfig.nvim"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\mason-lspconfig.nvim",[m
+     url = "https://github.com/williamboman/mason-lspconfig.nvim"[m
+   },[m
+   ["mason.nvim"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/mason.nvim",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\mason.nvim",[m
+     url = "https://github.com/williamboman/mason.nvim"[m
+   },[m
+   ["null-ls.nvim"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/null-ls.nvim",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\null-ls.nvim",[m
+     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"[m
+   },[m
+   ["nvim-autopairs"] = {[m
+     config = { "\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/nvim-autopairs",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-autopairs",[m
+     url = "https://github.com/windwp/nvim-autopairs"[m
+   },[m
+   ["nvim-cmp"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/nvim-cmp",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-cmp",[m
+     url = "https://github.com/hrsh7th/nvim-cmp"[m
+   },[m
+   ["nvim-jdtls"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/nvim-jdtls",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-jdtls",[m
+     url = "https://github.com/mfussenegger/nvim-jdtls"[m
+   },[m
+   ["nvim-lsp-installer"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lsp-installer",[m
+     url = "https://github.com/williamboman/nvim-lsp-installer"[m
+   },[m
+   ["nvim-lspconfig"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig",[m
+     url = "https://github.com/neovim/nvim-lspconfig"[m
+   },[m
+   ["nvim-treesitter"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/nvim-treesitter",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-treesitter",[m
+     url = "https://github.com/nvim-treesitter/nvim-treesitter"[m
+   },[m
+   ["packer.nvim"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/packer.nvim",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\packer.nvim",[m
+     url = "https://github.com/wbthomason/packer.nvim"[m
+   },[m
+   ["plenary.nvim"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/plenary.nvim",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",[m
+     url = "https://github.com/nvim-lua/plenary.nvim"[m
+   },[m
+   ["rose-pine"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/rose-pine",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\rose-pine",[m
+     url = "https://github.com/rose-pine/neovim"[m
+   },[m
+   ["telescope.nvim"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/telescope.nvim",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",[m
+     url = "https://github.com/nvim-telescope/telescope.nvim"[m
+   },[m
+   undotree = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/undotree",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\undotree",[m
+     url = "https://github.com/mbbill/undotree"[m
+   },[m
+   ["vim-fugitive"] = {[m
+     loaded = true,[m
+[31m-    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/vim-fugitive",[m
+[32m+[m[32m    path = "C:\\Users\\Micae\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-fugitive",[m
+     url = "https://github.com/tpope/vim-fugitive"[m
+   }[m
+ }[m

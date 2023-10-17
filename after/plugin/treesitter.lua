@@ -1,3 +1,4 @@
+
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "go", "dart", "java" },
@@ -25,3 +26,5 @@ require'nvim-treesitter.configs'.setup {
     disable = { },
   },
 }
+
+require 'nvim-treesitter.install'.compilers = { "clang" }
