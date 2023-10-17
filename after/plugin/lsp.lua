@@ -30,7 +30,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'rust_analyzer', 'gopls'},
+  ensure_installed = { 'tsserver', 'rust_analyzer', 'gopls', 'clangd'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -57,3 +57,23 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
   }),
 })
+
+
+require('lspconfig').clangd.setup({
+    cmd = {
+        "clangd"
+    },
+    filetypes = {
+     "c", "cpp", "objc", "objcpp", "cuda", "proto"
+    },
+    capabilities = {
+      textDocument = {
+        completion = {
+          editsNearCursor = true,
+        },
+      },
+      offsetEncoding = { 'utf-8', 'utf-16' },
+    },
+
+})
+

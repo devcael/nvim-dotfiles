@@ -1,4 +1,3 @@
-
 vim.g.mapleader = " " -- LeaderKey
 
 -- Mapeamento para Ctrl + e para executar o comando :Ex e abrir o explorador de arquivos
