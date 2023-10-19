@@ -1,6 +1,6 @@
 
 require("nvim-lsp-installer").setup({
-    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    automatic_installation = true,
     ui = {
         icons = {
             server_installed = "✓",
@@ -30,9 +30,10 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'rust_analyzer', 'gopls', 'clangd'},
+  ensure_installed = {  'jdtls', 'gopls', 'clangd'},
   handlers = {
     lsp_zero.default_setup,
+    jdtls = lsp_zero.noop,
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
@@ -42,6 +43,8 @@ require('mason-lspconfig').setup({
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
+
+
 
 cmp.setup({
   sources = {
@@ -53,7 +56,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<enter>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
   }),
 })

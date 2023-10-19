@@ -12,4 +12,3 @@ vim.api.nvim_set_keymap('n', '<M-Right>', [[:vertical resize +5<CR>]], { noremap
 
 -- Mapeamento de SplitVertical
 vim.api.nvim_set_keymap('n', '<C-\\>', [[:vsplit<CR>]], { noremap = true, silent = true })
-

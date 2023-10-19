@@ -1,4 +1,7 @@
-require "init"
+local plugin_path = "plugin.";
+require(plugin_path .. "packer")
+require(plugin_path .. "setup")
+require(plugin_path .. "mappings")
  
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')

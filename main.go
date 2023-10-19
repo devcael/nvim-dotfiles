@@ -1,5 +1,13 @@
-package nvim
+package main
 
-func main(){
-  var micael = "Micael";
+import "fmt"
+
+func add(a int, b int) {
+
+}
+
+func main() {
+
+	fmt.Println("")
+
 }

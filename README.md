@@ -37,3 +37,11 @@ Após Instalação basta abrir o nvim e executar ma linha de comando:
  - [From 0 To Lsp (Primeagen)](https://www.youtube.com/watch?v=w7i4amO_zaE&t=1229s)
 
 
+Referencias Pra Resolver Problema no Java
+https://www.youtube.com/watch?v=WelEHE3RwtY&t=216s
+https://github.com/Nawy/nvim-config-examples/blob/main/lsp-java/ftplugin/java.lua
+https://github.com/mfussenegger/nvim-jdtls
+https://github.com/eclipse-jdtls/eclipse.jdt.ls
+
+
+
