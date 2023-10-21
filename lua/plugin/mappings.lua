@@ -11,4 +11,8 @@ vim.api.nvim_set_keymap('n', '<M-Left>', [[:vertical resize -5<CR>]], { noremap 
 vim.api.nvim_set_keymap('n', '<M-Right>', [[:vertical resize +5<CR>]], { noremap = true, silent = true })
 
 -- Mapeamento de SplitVertical
-vim.api.nvim_set_keymap('n', '<C-\\>', [[:vsplit<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>/', [[:vsplit<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>?', [[:split<CR>]], { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<C-u><C-t>', [[:UndotreeToggle<CR>]], { noremap = true, silent = true })
+

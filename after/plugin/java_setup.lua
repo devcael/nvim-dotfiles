@@ -1,179 +1,155 @@
-print("Java Setup")
-
-local nvim_lsp = require('lspconfig')
-
-local jdk17Path = "C:\\tools\\jdk-17.0.9\\bin"
-local eclipse_jdtls_la_path = "C:\\tools\\eclipse.jdt.ls\\org.eclipse.jdt.ls.product\\target\\repository"
-
-local jdtls_path = vim.fn.stdpath('data') .. "\\lsp_servers\\jdtls"
-local path_to_lsp_server = jdtls_path .. "\\config_win"
-local path_to_plugins = jdtls_path .. "\\plugins\\"
-local path_to_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar"
-
- nvim_lsp.jdtls.setup {
-   cmd = {
-     jdk17Path .. '\\java', 
- '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-  '-Dosgi.bundles.defaultStartLevel=4', 
- '-Declipse.product=org.eclipse.jdt.ls.core.product',
- '-Dlog.level=ALL',
- '-noverify',
- '-Xmx1G',
- '-jar', 
- path_to_jar,
- '-configuration',
- eclipse_jdtls_la_path .. 'config_win' 
- },
-   on_attach = require'completion'.on_attach,
- }
-
-
-
- -- Java Language Server configuration.
--- Locations:
--- 'nvim/ftplugin/java.lua'.
--- 'nvim/lang-servers/intellij-java-google-style.xml'
-
-local jdtls_ok, jdtls = pcall(require, "jdtls")
-if not jdtls_ok then
-  vim.notify "JDTLS not found, install with `:LspInstall jdtls`"
-  return
-end
-
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
-local jdtls_path = vim.fn.stdpath('data') .. "/lsp_servers/jdtls"
-local path_to_lsp_server = jdtls_path .. "/config_mac"
-local path_to_plugins = jdtls_path .. "/plugins/"
-local path_to_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
-local lombok_path = path_to_plugins .. "lombok.jar"
-
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
-local root_dir = require("jdtls.setup").find_root(root_markers)
-if root_dir == "" then
-  return
-end
-
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. project_name
-os.execute("mkdir " .. workspace_dir)
-
--- Main Config
-local config = {
-  -- The command that starts the language server
-  -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-  cmd = {
-    '/Users/ivanermolaev/Library/Java/JavaVirtualMachines/temurin-18.0.1/Contents/Home/bin/java',
-    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-    '-Dosgi.bundles.defaultStartLevel=4',
-    '-Declipse.product=org.eclipse.jdt.ls.core.product',
-    '-Dlog.protocol=true',
-    '-Dlog.level=ALL',
-    '-javaagent:' .. lombok_path,
-    '-Xms1g',
-    '--add-modules=ALL-SYSTEM',
-    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-
-    '-jar', path_to_jar,
-    '-configuration', path_to_lsp_server,
-    '-data', workspace_dir,
-  },
-
-  -- This is the default if not provided, you can remove it. Or adjust as needed.
-  -- One dedicated LSP server & client will be started per unique root_dir
-  root_dir = root_dir,
-
-  -- Here you can configure eclipse.jdt.ls specific settings
-  -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-  -- for a list of options
-  settings = {
-    java = {
-      home = '/Users/ivanermolaev/Library/Java/JavaVirtualMachines/temurin-18.0.1/Contents/Home/',
-      eclipse = {
-        downloadSources = true,
-      },
-      configuration = {
-        updateBuildConfiguration = "interactive",
-        runtimes = {
-       
-        }
-      },
-      maven = {
-        downloadSources = true,
-      },
-      implementationsCodeLens = {
-        enabled = true,
-      },
-      referencesCodeLens = {
-        enabled = true,
-      },
-      references = {
-        includeDecompiledSources = true,
-      },
-      format = {
-        enabled = true,
-        settings = {
-          url = vim.fn.stdpath "config" .. "/lang-servers/intellij-java-google-style.xml",
-          profile = "GoogleStyle",
-        },
-      },
-
-    },
-    signatureHelp = { enabled = true },
-    completion = {
-      favoriteStaticMembers = {
-        "org.hamcrest.MatcherAssert.assertThat",
-        "org.hamcrest.Matchers.*",
-        "org.hamcrest.CoreMatchers.*",
-        "org.junit.jupiter.api.Assertions.*",
-        "java.util.Objects.requireNonNull",
-        "java.util.Objects.requireNonNullElse",
-        "org.mockito.Mockito.*",
-      },
-      importOrder = {
-        "java",
-        "javax",
-        "com",
-        "org"
-      },
-    },
-    extendedClientCapabilities = extendedClientCapabilities,
-    sources = {
-      organizeImports = {
-        starThreshold = 9999,
-        staticStarThreshold = 9999,
-      },
-    },
-    codeGeneration = {
-      toString = {
-        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-      },
-      useBlocks = true,
-    },
-  },
-
-  flags = {
-    allow_incremental_sync = true,
-  },
-  init_options = {
-    bundles = {},
-  },
-}
-
-config['on_attach'] = function(client, bufnr)
-  require'keymaps'.map_java_keys(bufnr);
-  require "lsp_signature".on_attach({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    floating_window_above_cur_line = false,
-    padding = '',
-    handler_opts = {
-      border = "rounded"
-    }
-  }, bufnr)
-end
-
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
-require('jdtls').start_or_attach(config)
-
-
+-- local jdk17Bpath = "C:/tools/jdk-17.0.9/bin";
+-- local eclipseJdtlsPath = "";
+-- 
+-- local jdtls_ok, jdtls = pcall(require, "jdtls")
+-- if not jdtls_ok then
+--   vim.notify "JDTLS not found, install with `:LspInstall jdtls`"
+--   return
+-- end
+-- 
+-- local dataPath = vim.fn.stdpath('data');
+-- local dataPathConverted = dataPath:gsub('\\', '/');
+-- 
+-- 
+-- local jdtls_path = dataPathConverted .. "/mason/packages/jdtls"
+-- local path_to_lsp_server = jdtls_path .. "/config_win"
+-- local path_to_plugins = jdtls_path .. "/plugins/"
+-- local path_to_eclipse_equinox_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar"
+-- 
+-- print("Jdtls Path: " .. jdtls_path);
+-- print("path_to_lsp_server: " .. path_to_lsp_server);
+-- print("path_to_plugins: " .. path_to_plugins);
+-- print("path to equinoxJar: " ..  path_to_eclipse_equinox_jar);
+-- 
+-- local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+-- local root_dir = require("jdtls.setup").find_root(root_markers)
+-- if root_dir == "" then
+--   return
+-- end
+-- 
+-- local workspace_dir = "C:/tools/nvim_java_lsp_workspace";
+-- os.execute("mkdir " .. workspace_dir)
+-- 
+-- print("workspace dir: " .. workspace_dir);
+-- 
+-- 
+-- -- Main Config
+-- local config = {
+--   -- The command that starts the language server
+--   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
+--   cmd = {
+--     'java',
+--     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+--     '-Dosgi.bundles.defaultStartLevel=4',
+--     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+--     '-Dlog.protocol=true',
+--     '-Dlog.level=ALL',
+--     '-Xms1g',
+--     '--add-modules=ALL-SYSTEM',
+--     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+--     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+-- 
+--     '-jar', path_to_eclipse_equinox_jar,
+--     '-configuration', path_to_lsp_server,
+--     '-data', workspace_dir,
+--   },
+-- 
+--   -- This is the default if not provided, you can remove it. Or adjust as needed.
+--   -- One dedicated LSP server & client will be started per unique root_dir
+--   root_dir = root_dir,
+-- 
+--   -- Here you can configure eclipse.jdt.ls specific settings
+--   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+--   -- for a list of options
+--   settings = {
+--     java = {
+--       home =  jdk17Bpath .. "/java",
+--       eclipse = {
+--         downloadSources = true,
+--       },
+--       configuration = {
+--         updateBuildConfiguration = "interactive",
+--         runtimes = {
+--         }
+--       },
+--       maven = {
+--         downloadSources = true,
+--       },
+--       implementationsCodeLens = {
+--         enabled = true,
+--       },
+--       referencesCodeLens = {
+--         enabled = true,
+--       },
+--       references = {
+--         includeDecompiledSources = true,
+--       },
+--       format = {
+--         enabled = true,
+--         settings = {
+--         --  url = vim.fn.stdpath "config" .. "/lang-servers/intellij-java-google-style.xml",
+--          -- profile = "GoogleStyle",
+--         },
+--       },
+-- 
+--     },
+--     signatureHelp = { enabled = true },
+--     completion = {
+--       favoriteStaticMembers = {
+--         "org.hamcrest.MatcherAssert.assertThat",
+--         "org.hamcrest.Matchers.*",
+--         "org.hamcrest.CoreMatchers.*",
+--         "org.junit.jupiter.api.Assertions.*",
+--         "java.util.Objects.requireNonNull",
+--         "java.util.Objects.requireNonNullElse",
+--         "org.mockito.Mockito.*",
+--       },
+--       importOrder = {
+--         "java",
+--         "javax",
+--         "com",
+--         "org"
+--       },
+--     },
+--     extendedClientCapabilities = extendedClientCapabilities,
+--     sources = {
+--       organizeImports = {
+--         starThreshold = 9999,
+--         staticStarThreshold = 9999,
+--       },
+--     },
+--     codeGeneration = {
+--       toString = {
+--         template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+--       },
+--       useBlocks = true,
+--     },
+--   },
+-- 
+--   flags = {
+--     allow_incremental_sync = true,
+--   },
+--   init_options = {
+--     bundles = {},
+--   },
+-- }
+-- 
+-- 
+-- 
+-- 
+-- -- config['on_attach'] = function(client, bufnr)
+-- --   require'keymaps'.map_java_keys(bufnr);
+-- --   require "lsp_signature".on_attach({
+-- --     bind = true, -- This is mandatory, otherwise border config won't get registered.
+-- --     floating_window_above_cur_line = false,
+-- --     padding = '',
+-- --     handler_opts = {
+-- --       border = "rounded"
+-- --     }
+-- --   }, bufnr)
+-- -- end
+-- 
+-- -- This starts a new client & server,
+-- -- or attaches to an existing client & server depending on the `root_dir`.
+-- 
+-- require('jdtls').start_or_attach(config)

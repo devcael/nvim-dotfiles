@@ -11,6 +11,8 @@ return require('packer').startup(function(use)
   use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Productivity
+  use {'akinsho/bufferline.nvim', tag = "*"}
+
   use {
    'nvim-telescope/telescope.nvim', tag = '0.1.4',
    requires = { {'nvim-lua/plenary.nvim'} }
@@ -32,7 +34,7 @@ return require('packer').startup(function(use)
 
   use 'mfussenegger/nvim-jdtls'
 
-  use {'neoclide/coc.nvim', branch = 'release'}
+  -- use {'neoclide/coc.nvim', branch = 'release'}
 
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -51,10 +53,16 @@ return require('packer').startup(function(use)
       "williamboman/nvim-lsp-installer",
   }
 
+  -- Terminal Settings
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+  end}
+
   -- Language Parser
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
-  use "jose-elias-alvarez/null-ls.nvim"
+  
+  -- use "jose-elias-alvarez/null-ls.nvim"
   
   -- Git Tools
   use 'tpope/vim-fugitive'
