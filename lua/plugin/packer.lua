@@ -11,6 +11,9 @@ return require('packer').startup(function(use)
   use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Productivity
+  use 'tpope/vim-obsession'
+  use 'dhruvasagar/vim-prosession'
+
   use {'akinsho/bufferline.nvim', tag = "*"}
 
   use {
@@ -69,7 +72,7 @@ return require('packer').startup(function(use)
 
 
   -- Laguages Plugins
-  
+
   -- Golang Setup
 
   use 'ray-x/go.nvim'
