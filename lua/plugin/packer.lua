@@ -11,8 +11,9 @@ return require('packer').startup(function(use)
   use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Productivity
-  use 'tpope/vim-obsession'
-  use 'dhruvasagar/vim-prosession'
+
+  use 'honza/vim-snippets'   -- Exemplo do plugin vim-snippets
+  use { "rafamadriz/friendly-snippets" } -- Exemplo de plugin
 
   use {'akinsho/bufferline.nvim', tag = "*"}
 

@@ -1,4 +1,6 @@
 -- toggleterm-config.lua
+local global = require("global_funcs")
+
 
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
@@ -17,7 +19,7 @@ toggleterm.setup({
  persist_size = true,
  direction = "horizontal",
  close_on_exit = true,
- shell = "powershell",
+ shell = global.getCurrShell(),
  float_opts = {
   border = "curved",
   winblend = 0,
@@ -49,5 +51,6 @@ local node = Terminal:new({ cmd = "powershell", hidden = true })
 function _NODE_TOGGLE()
  node:toggle()
 end
+
 
 

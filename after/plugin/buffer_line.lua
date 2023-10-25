@@ -1,6 +1,7 @@
+
 vim.opt.termguicolors = true
 
-local bufferLine = require("bufferLine")
+local bufferLine = require("bufferline")
 
 
 -- Goto Next Buffer
@@ -22,4 +23,10 @@ vim.keymap.set(
   end
 )
 
-bufferLine.setup{}
+bufferLine.setup({
+    options = {
+        separator_style = "slant",
+        show_buffer_close_icons = true,
+        view = "multiwindow",
+    }
+  })
