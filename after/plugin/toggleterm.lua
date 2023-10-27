@@ -1,6 +1,5 @@
 -- toggleterm-config.lua
-local global = require("global_funcs")
-
+local global = require "commands.global_funcs"
 
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then

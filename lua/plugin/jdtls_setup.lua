@@ -1,4 +1,17 @@
 local M = {}
+local globalsFunc = require("commands.global_funcs")
+
+function getJdk17Path()
+  local currOs = globalsFunc.osInfo();
+  if currOs.IS_LINUX  then
+    print("Is linux");
+   return "/usr/local/tools/jdk-17.0.8/bin/java";
+  elseif currOs.IS_WINDOWS  then
+    return "java";
+  else
+    print("nenhum os setado")
+  end
+end
 
 local java_cmds = vim.api.nvim_create_augroup('java_cmds', {clear = true})
 local cache_vars = {}
@@ -167,7 +180,7 @@ function M.jdtls_setup(event)
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   local cmd = {
     -- 💀
-    'java',
+    getJdk17Path(),
 
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',

@@ -1,3 +1,4 @@
+
 -- minhas_funcoes.lua
 local M = {}
 
@@ -24,5 +25,4 @@ function M.getCurrShell()
   end
 end
 return M
-
 

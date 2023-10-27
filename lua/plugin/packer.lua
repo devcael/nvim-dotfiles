@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
   use 'honza/vim-snippets'   -- Exemplo do plugin vim-snippets
   use { "rafamadriz/friendly-snippets" } -- Exemplo de plugin
 
-  use {'akinsho/bufferline.nvim', tag = "*"}
+  --use {'akinsho/bufferline.nvim', tag = "*"}
 
   use {
    'nvim-telescope/telescope.nvim', tag = '0.1.4',
