@@ -167,7 +167,7 @@ function M.jdtls_setup(event)
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   local cmd = {
     -- 💀
-    'java',
+    'C:/tools/jdk-17.0.9/bin/java',
 
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
