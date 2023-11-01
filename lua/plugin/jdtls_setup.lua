@@ -5,7 +5,8 @@ function getJdk17Path()
   local currOs = globalsFunc.osInfo();
   if currOs.IS_LINUX  then
     print("Is linux");
-   return "/usr/local/tools/jdk-17.0.8/bin/java";
+   return "/home/devcael/.sdkman/candidates/java/17.0.0-oracle/bin/java";
+--   return "/usr/local/tools/jdk-17.0.8/bin/java";
   elseif currOs.IS_WINDOWS  then
     return "java";
   else

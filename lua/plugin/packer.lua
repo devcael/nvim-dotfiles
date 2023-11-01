@@ -34,6 +34,12 @@ return require('packer').startup(function(use)
   use 'mbbill/undotree'
   use 'ThePrimeagen/harpoon'
 
+  -- Debugger
+  use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use ''
+
+
   -- Language Servers
 
   use 'mfussenegger/nvim-jdtls'
