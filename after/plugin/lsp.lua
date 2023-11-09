@@ -1,21 +1,32 @@
-
-
 require("nvim-lsp-installer").setup({
-    automatic_installation = true,
-    ui = {
-        icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
-        }
+  automatic_installation = true,
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗"
     }
+  }
 })
 
+
+local lsp_format_on_save = function(bufnr)
+  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format()
+    end,
+  })
+end
 
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+  lsp_format_on_save(bufnr);
+
+  local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -29,9 +40,20 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-require('mason').setup({})
+require('mason').setup({
+})
+
 require('mason-lspconfig').setup({
-  ensure_installed = {  'jdtls', 'gopls', 'clangd'},
+  ensure_installed = {
+    'jdtls',
+    'gopls',
+    'clangd',
+    "lua_ls",
+    "eslint",
+    "html",
+    "jsonls",
+    "tsserver",
+  },
   handlers = {
     lsp_zero.default_setup,
     jdtls = lsp_zero.noop,
@@ -43,15 +65,14 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 
 cmp.setup({
   sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp'},
-    {name = 'nvim_lua'},
+    { name = 'path' },
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
   },
   formatting = lsp_zero.cmp_format(),
   mapping = cmp.mapping.preset.insert({
@@ -63,24 +84,21 @@ cmp.setup({
 })
 
 require('lspconfig').clangd.setup({
-    cmd = {
-        "clangd"
-    },
-    filetypes = {
-     "c", "cpp", "objc", "objcpp", "cuda", "proto"
-    },
-    capabilities = {
-      textDocument = {
-        completion = {
-          editsNearCursor = true,
-        },
+  cmd = {
+    "clangd"
+  },
+  filetypes = {
+    "c", "cpp", "objc", "objcpp", "cuda", "proto"
+  },
+  capabilities = {
+    textDocument = {
+      completion = {
+        editsNearCursor = true,
       },
-      offsetEncoding = { 'utf-8', 'utf-16' },
     },
+    offsetEncoding = { 'utf-8', 'utf-16' },
+  },
 
 })
 
-require'lspconfig'.lua_ls.setup{}
-
-
-
+require 'lspconfig'.lua_ls.setup {}
