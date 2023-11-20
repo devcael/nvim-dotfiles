@@ -1,6 +1,10 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
+  use 'prettier/vim-prettier'
+
+  use 'posva/vim-vue'
+
   use 'nvim-lua/plenary.nvim' -- Common utilities
   use 'onsails/lspkind-nvim'  -- vscode-like pictograms
   use {
