@@ -69,10 +69,16 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      require 'luasnip'.lsp_expand(args.body)
+    end
+  },
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
+    { name = 'luasnip' },
   },
   formatting = lsp_zero.cmp_format(),
   mapping = cmp.mapping.preset.insert({
@@ -102,7 +108,6 @@ require('lspconfig').clangd.setup({
 })
 
 require 'lspconfig'.lua_ls.setup {}
-
 
 require 'lspconfig'.vuels.setup {
 
@@ -146,4 +151,14 @@ require 'lspconfig'.vuels.setup {
       }
     }
   }
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require 'lspconfig'.cssls.setup {
+  capabilities = capabilities,
+}
+
+require 'lspconfig'.html.setup {
+  capabilities = capabilities,
 }
