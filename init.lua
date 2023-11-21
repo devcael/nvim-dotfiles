@@ -18,11 +18,23 @@ vim.o.shiftwidth = 2
 vim.wo.number = true
 vim.wo.relativenumber = true
 -- Color Scheme Settings
-vim.cmd.colorscheme("catppuccin")
-vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
-vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+vim.cmd.colorscheme("rigel")
 
+-- Selecione os grupos de destaque dos números e faça-os transparentes
+function tornarTransparente()
+  vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
+  -- SignComumn é a coluna onde ficam os números de linhas
+  vim.cmd([[hi SignColumn guibg=NONE ctermbg=NONE]])
+  vim.cmd([[hi VertSplit guibg=NONE ctermbg=NONE]])
+  -- vim.cmd([[hi StatusLine guibg=NONE ctermbg=NONE]])
+  -- vim.cmd([[hi StatusLineNC guibg=NONE ctermbg=NONE]])
+  vim.cmd([[hi FoldColumn guibg=NONE ctermbg=NONE]])
+  vim.cmd([[hi LineNr guibg=NONE ctermbg=NONE]])
+  vim.cmd([[hi CursorLineNr guibg=NONE ctermbg=NONE]])
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+
+tornarTransparente();
 
 vim.api.nvim_set_keymap('x', '<leader>p', "\"_dP", { noremap = true, silent = true })
-
-

@@ -32,17 +32,20 @@ return require('packer').startup(function(use)
 
   -- Look And Feel
 
+  use 'Rigellute/rigel'
+  use 'ray-x/aurora'
+  use 'adrian5/oceanic-next-vim'
   use({ 'rose-pine/neovim', as = 'rose-pine' })
 
-  use { "catppuccin/nvim", as = "catppuccin" }
+  use { 'catppuccin/nvim', as = 'catppuccin' }
 
   -- Productivity
 
 
   use 'honza/vim-snippets'               -- Exemplo do plugin vim-snippets
-  use { "rafamadriz/friendly-snippets" } -- Exemplo de plugin
+  use { 'rafamadriz/friendly-snippets' } -- Exemplo de plugin
 
-  --use {'akinsho/bufferline.nvim', tag = "*"}
+  --use {'akinsho/bufferline.nvim', tag = '*'}
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.4',
@@ -63,7 +66,7 @@ return require('packer').startup(function(use)
 
   -- Debugger
   use 'mfussenegger/nvim-dap'
-  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
   use ''
 
 
@@ -89,19 +92,19 @@ return require('packer').startup(function(use)
   }
 
   use {
-    "williamboman/nvim-lsp-installer",
+    'williamboman/nvim-lsp-installer',
   }
 
   -- Terminal Settings
-  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
+  use { 'akinsho/toggleterm.nvim', tag = '*', config = function()
+    require('toggleterm').setup()
   end }
 
   -- Language Parser
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
 
-  use { "jose-elias-alvarez/null-ls.nvim" }
+  use { 'jose-elias-alvarez/null-ls.nvim' }
 
   -- Git Tools
   use 'tpope/vim-fugitive'
