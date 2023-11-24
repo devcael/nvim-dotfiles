@@ -17,7 +17,4 @@ vim.api.nvim_set_keymap('n', '<leader>?', [[:split<CR>]], { noremap = true, sile
 vim.api.nvim_set_keymap('n', '<C-u><C-t>', [[:UndotreeToggle<CR>]], { noremap = true, silent = true })
 
 -- Mapeamento para apagar o conteúdo dentro das aspas duplas
-vim.api.nvim_set_keymap('n', '<leader>c', 'ci"', { noremap = true })
-
-
-
+-- vim.api.nvim_set_keymap('n', '<leader>c', 'ci"', { noremap = true })

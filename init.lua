@@ -37,4 +37,10 @@ end
 
 tornarTransparente();
 
+
+vim.api.nvim_set_hl(0, "MyPMenu", { bg = "#c70d0f", fg = "Red" })
+vim.api.nvim_set_hl(0, "MyPmenuSel", { bg = "#c70d0f", fg = "Black", bold = true })
+
+
+vim.api.nvim_set_option("clipboard", "unnamed")
 vim.api.nvim_set_keymap('x', '<leader>p', "\"_dP", { noremap = true, silent = true })

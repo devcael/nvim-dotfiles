@@ -64,6 +64,9 @@ require('mason-lspconfig').setup({
   }
 })
 
+
+
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -79,6 +82,15 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
+  },
+  window = {
+    completion = cmp.config.window.bordered({
+      border = 'rounded',
+
+      winhighlight = 'NormalFloat:MyPMenu,FloatBorder:MyPMenu,CursorLine:MyPmenuSel,Search:None',
+
+    })
+
   },
   formatting = lsp_zero.cmp_format(),
   mapping = cmp.mapping.preset.insert({
@@ -151,6 +163,7 @@ require 'lspconfig'.vuels.setup {
       }
     }
   }
+}
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true

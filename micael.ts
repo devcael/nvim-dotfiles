@@ -4,7 +4,11 @@ class Micael {
     this.name = name;
   }
   sayHello(): string {
-    return 1;
+    return "Micael";
+  }
+
+  static sayHello(): string {
+    return "Micael";
   }
 
   foo() {
