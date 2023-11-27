@@ -31,7 +31,7 @@ local features = {
 
   -- change this to `true` if you have `nvim-dap`,
   -- `java-test` and `java-debug-adapter` installed
-  debugger = false,
+  debugger = true,
 }
 
 local function get_jdtls_paths()
@@ -82,6 +82,8 @@ local function get_jdtls_paths()
   local java_debug_path = require('mason-registry')
       .get_package('java-debug-adapter')
       :get_install_path()
+
+  print(java_debug_path)
 
   local java_debug_bundle = vim.split(
     vim.fn.glob(java_debug_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar'),

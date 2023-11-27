@@ -1,4 +1,3 @@
-
 -- minhas_funcoes.lua
 local M = {}
 
@@ -19,10 +18,10 @@ function M.getCurrShell()
   if OS.IS_WINDOWS then
     return "powershell"
   elseif OS.IS_LINUX then
-    return "bash"
+    return "zsh"
   else
     error("Sistema não identificado pra buscar o shell")
   end
 end
-return M
 
+return M
