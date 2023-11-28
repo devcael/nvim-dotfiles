@@ -1,7 +1,5 @@
 -- Color Scheme Settings
-vim.cmd.colorscheme("rose-pine")
-
-
+vim.cmd.colorscheme("catppuccin")
 
 function alterarBackgroundPraUmaCorEscolhida()
   local color = "#021727"
@@ -37,8 +35,8 @@ function tornarBackgroundTransparent()
 
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  vim.api.nvim_set_hl(0, "MyPMenu", { bg = "none", fg = "none" })
-  vim.api.nvim_set_hl(0, "MyPmenuSel", { bg = "none", fg = "none", bold = true })
+  vim.api.nvim_set_hl(0, "MyPMenu", { bg = "none", fg = "White" })
+  vim.api.nvim_set_hl(0, "MyPmenuSel", { bg = "none", fg = "White", bold = true })
 end
 
-alterarBackgroundPraUmaCorEscolhida();
+tornarBackgroundTransparent();
