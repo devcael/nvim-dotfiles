@@ -38,6 +38,9 @@ return require('packer').startup(function(use)
   use 'ray-x/aurora'
   use 'adrian5/oceanic-next-vim'
   use({ 'rose-pine/neovim', as = 'rose-pine' })
+  use {
+    "folke/tokyonight.nvim",
+  }
 
   use { 'catppuccin/nvim', as = 'catppuccin' }
 
