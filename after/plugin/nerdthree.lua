@@ -1,0 +1,1 @@
+print("Nerd Three Setup")

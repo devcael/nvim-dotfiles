@@ -3,6 +3,8 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'prettier/vim-prettier'
 
+  use 'preservim/nerdtree'
+  use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
   use 'posva/vim-vue'
 
   use 'nvim-lua/plenary.nvim' -- Common utilities
@@ -18,7 +20,6 @@ return require('packer').startup(function(use)
   }
   use { 'saadparwaiz1/cmp_luasnip' }
   use 'L3MON4D3/LuaSnip'
-  use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
   use { 'numToStr/Comment.nvim',
     requires = {
@@ -53,9 +54,7 @@ return require('packer').startup(function(use)
   --use {'akinsho/bufferline.nvim', tag = '*'}
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-
+    'nvim-telescope/telescope.nvim', tag = '0.1.4'
   }
 
   use {
@@ -65,14 +64,12 @@ return require('packer').startup(function(use)
     end
   }
 
-  use 'nvim-lua/plenary.nvim'
   use 'mbbill/undotree'
   use 'ThePrimeagen/harpoon'
 
   -- Debugger
   use 'mfussenegger/nvim-dap'
   use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
-  use ''
 
 
   -- Language Servers
