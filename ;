@@ -1,8 +1,11 @@
 -- Color Scheme Settings
-vim.g.material_terminal_italics = 1
-vim.g.material_theme_style = 'ocean-community'
-vim.cmd.colorscheme("material")
+--
+vim.cmd.colorscheme("catppuccin-mocha")
 
+if has('termguicolors') then
+  set
+  termguicolors
+end
 -- vim.cmd.colorscheme("tokyonight-night")
 
 function alterarBackgroundPraUmaCorEscolhida()
