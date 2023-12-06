@@ -1,6 +1,8 @@
 -- Color Scheme Settings
 --
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.g.material_terminal_italics = 1
+vim.g.material_theme_style = 'ocean-community'
+vim.cmd.colorscheme("material")
 
 -- vim.cmd.colorscheme("tokyonight-night")
 
