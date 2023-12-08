@@ -310,6 +310,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/devcael/.local/share/nvim/site/pack/packer/start/vim-vue",
     url = "https://github.com/posva/vim-vue"
+  },
+  ["vim-wakatime"] = {
+    loaded = true,
+    path = "/home/devcael/.local/share/nvim/site/pack/packer/start/vim-wakatime",
+    url = "https://github.com/wakatime/vim-wakatime"
   }
 }
 
