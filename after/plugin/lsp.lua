@@ -101,6 +101,14 @@ cmp.setup({
   }),
 })
 
+vim.diagnostic.config({
+  underline = false,
+  virtual_text = false,
+  virtual_lines = false,
+  signs = false,
+  update_in_insert = false,
+})
+
 require('lspconfig').clangd.setup({
   cmd = {
     "clangd"
@@ -174,4 +182,15 @@ require 'lspconfig'.cssls.setup {
 
 require 'lspconfig'.html.setup {
   capabilities = capabilities,
+}
+
+-- Configurações do nvim-lspconfig
+require('lspconfig').pyright.setup {
+  settings = {
+    python = {
+      analysis = {
+        errors = {}, -- Desativa a exibição de erros
+      },
+    },
+  },
 }

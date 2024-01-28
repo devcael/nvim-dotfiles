@@ -44,4 +44,3 @@ https://github.com/mfussenegger/nvim-jdtls
 https://github.com/eclipse-jdtls/eclipse.jdt.ls
 
 
-
